@@ -16,7 +16,7 @@ output "iot_domain_configurations_authentication_type" {
 }
 output "iot_domain_configurations_authorizer_config" {
   description = "Map of authorizer_config values across all iot_domain_configurations, keyed the same as var.iot_domain_configurations"
-  value       = { for k, v in aws_iot_domain_configuration.iot_domain_configurations : k => v.authorizer_config if v.authorizer_config != null && length(v.authorizer_config) > 0 }
+  value       = { for k, v in aws_iot_domain_configuration.iot_domain_configurations : k => one(v.authorizer_config) if v.authorizer_config != null && length(v.authorizer_config) > 0 }
 }
 output "iot_domain_configurations_domain_name" {
   description = "Map of domain_name values across all iot_domain_configurations, keyed the same as var.iot_domain_configurations"
@@ -56,7 +56,7 @@ output "iot_domain_configurations_tags_all" {
 }
 output "iot_domain_configurations_tls_config" {
   description = "Map of tls_config values across all iot_domain_configurations, keyed the same as var.iot_domain_configurations"
-  value       = { for k, v in aws_iot_domain_configuration.iot_domain_configurations : k => v.tls_config if v.tls_config != null && length(v.tls_config) > 0 }
+  value       = { for k, v in aws_iot_domain_configuration.iot_domain_configurations : k => one(v.tls_config) if v.tls_config != null && length(v.tls_config) > 0 }
 }
 output "iot_domain_configurations_validation_certificate_arn" {
   description = "Map of validation_certificate_arn values across all iot_domain_configurations, keyed the same as var.iot_domain_configurations"
